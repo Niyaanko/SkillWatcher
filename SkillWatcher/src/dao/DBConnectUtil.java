@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+DB接続クラス
+継承して使用すること。
+*/
 public class DBConnectUtil {
 
 	//接続DBの宣言
