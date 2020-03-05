@@ -44,9 +44,8 @@ public class UserDAO extends DBConnectUtil{
 						+ " WHERE " + column + " = ?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			String strVal = null;
 
-			pStmt.setString(1,strVal);
+			pStmt.setString(1,val);
 			ResultSet rs = pStmt.executeQuery();
 			UserBean ub = null;
 			while(rs.next()) {
