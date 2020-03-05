@@ -33,18 +33,20 @@ public class UserDAO extends DBConnectUtil{
 			return false;
 		}
 	}
-	/**User取得メソッド（メールアドレスから）
-	 * @param not {@code null}
+	/**User取得メソッド（列指定）
+	 * @param not {@code null} String column,Object val
 	 * @return UserBean User情報 取得できなかった場合 null
 	 */
-	public UserBean getUserByMailAddress(String mailAddress) {
+	public UserBean getUser(String column, String val) {
 		try {
 			//User情報INSERT SQL
 			String sql = "SELECT user_id, mail_address, password, authority, user_name FROM" + TABLE
-						+ "WHERE mail_address = ?";
+						+ "WHERE " + column + " = ?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1,mailAddress);
+			String strVal = null;
+
+			pStmt.setString(1,strVal);
 			ResultSet rs = pStmt.executeQuery();
 			UserBean ub = null;
 			while(rs.next()) {
@@ -62,5 +64,25 @@ public class UserDAO extends DBConnectUtil{
 			return null;
 		}
 	}
-
+	/**User取得メソッド（メールアドレスから）
+	 * @param not {@code null}
+	 * @return UserBean User情報 取得できなかった場合 null
+	 */
+	public UserBean getUserByMailAddress(String mailAddress) {
+		return getUser("mail_address", mailAddress);
+	}
+	/**User取得メソッド（ユーザーIDから）
+	 * @param not {@code null}
+	 * @return UserBean User情報 取得できなかった場合 null
+	 */
+	public UserBean getUserByUserId(int userId) {
+			return getUser("user_id", Integer.toString(userId));
+	}
+	/**User取得メソッド（ユーザーネームから）
+	 * @param not {@code null}
+	 * @return UserBean User情報 取得できなかった場合 null
+	 */
+	public UserBean getUserByUserName(String userName) {
+			return getUser("user_name", userName);
+	}
 }
