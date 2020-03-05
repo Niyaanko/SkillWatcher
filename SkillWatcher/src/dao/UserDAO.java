@@ -7,7 +7,7 @@ import bean.UserBean;
 
 public class UserDAO extends DBConnectUtil{
 
-	private static final String TABLE = "";
+	private static final String TABLE = "Users";
 
 	/**User新規登録メソッド
 	 * @param not {@code null}
@@ -40,8 +40,8 @@ public class UserDAO extends DBConnectUtil{
 	public UserBean getUser(String column, String val) {
 		try {
 			//User情報INSERT SQL
-			String sql = "SELECT user_id, mail_address, password, authority, user_name FROM" + TABLE
-						+ "WHERE " + column + " = ?";
+			String sql = "SELECT user_id, mail_address, password, authority, user_name FROM " + TABLE
+						+ " WHERE " + column + " = ?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			String strVal = null;

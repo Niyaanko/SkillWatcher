@@ -26,7 +26,7 @@ public class DBConnectUtil {
 
 			conn = DriverManager.getConnection("jdbc:sqlserver:"
 					+ "//localhost\\SQLEXPRESS;database=" + DB
-					+ "integratedSecurity=false;user=" + USER + ";password=sa" + PW);
+					+ ";integratedSecurity=false;user=" + USER + ";password=" + PW);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
