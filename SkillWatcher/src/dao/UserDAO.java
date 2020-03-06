@@ -34,7 +34,7 @@ public class UserDAO extends DBConnectUtil{
 		}
 	}
 	/**User取得メソッド（列指定）
-	 * @param not {@code null} String column,Object val
+	 * @param not {@code null} String column,String val
 	 * @return UserBean User情報 取得できなかった場合 null
 	 */
 	public UserBean getUser(String column, String val) {
@@ -83,5 +83,26 @@ public class UserDAO extends DBConnectUtil{
 	 */
 	public UserBean getUserByUserName(String userName) {
 			return getUser("user_name", userName);
+	}
+	/**User情報UPDATEメソッド（列、条件単独指定）
+	 * @param not {@code null} String updColumn, String updVal, String whrColumn, String whrVal
+	 * @return UserBean User情報 取得できなかった場合 null
+	 */
+	public boolean updateUser(String updColumn, String updVal, String whrColumn, String whrVal) {
+		try {
+			//User情報UPDATE SQL
+			String sql = "UPDATE " + TABLE + " SET " + updColumn + " = ? WHERE " + whrColumn + " = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1,updVal);
+			pStmt.setString(2,whrVal);
+			pStmt.executeUpdate();
+
+			return true;
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
