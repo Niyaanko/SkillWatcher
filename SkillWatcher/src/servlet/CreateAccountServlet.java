@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/CreateAccountServlet")
+public class CreateAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public CreateAccountServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,10 +30,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		//セッション情報がセットされていれば、そのまま会員ページへ
-
-		//セッション情報がセットされていない場合、ログインページへ
-		RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/LoginPage.jsp");
+		//会員登録ページへ
+		RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/CreateAccountPage.jsp");
 		reqDispatcher.forward(request, response);
 		return;
 	}
