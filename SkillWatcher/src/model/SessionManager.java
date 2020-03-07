@@ -51,8 +51,11 @@ public class SessionManager {
 		if(cookieId == null) {
 			return false;
 		}
-		//セッションのUserBean id とクッキーのidが照合できるか
 		UserBean usBean = (UserBean)session.getAttribute("user");
+		if(usBean == null) {
+			return false;
+		}
+		//セッションのUserBean id とクッキーのidが照合できるか
 		if(!cookieId.equals(Integer.toString(usBean.getId()))) {
 			return false;
 		}
