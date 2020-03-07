@@ -59,4 +59,21 @@ public class SessionManager {
 		return true;
 	}
 
+	/**
+	 * セッション・クッキーの破棄を行うメソッド
+	 * @param HttpServletRequest HttpServletResponse
+	 */
+	public static void disposeSession(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession(false);
+		//セッションがnullでなければ破棄
+		if(session != null) {
+			session.invalidate();
+		}
+		//クッキーのidを空の文字列で上書き（破棄）
+		Cookie cookie = new Cookie("id","");
+		response.addCookie(cookie);
+	}
+
+
+
 }

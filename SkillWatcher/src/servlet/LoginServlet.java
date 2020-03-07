@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.SessionManager;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -29,13 +31,15 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		RequestDispatcher reqDispatcher = null;
 		//セッション情報がセットされていれば、そのまま会員ページへ
-
 		//セッション情報がセットされていない場合、ログインページへ
-		RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/LoginPage.jsp");
-		reqDispatcher.forward(request, response);
-		return;
+		if(SessionManager.isSession(request)) {
+			response.sendRedirect("/SkillWatcher/MemberServlet");
+		}else {
+			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/LoginPage.jsp");
+			reqDispatcher.forward(request, response);
+		}
 	}
 
 	/**

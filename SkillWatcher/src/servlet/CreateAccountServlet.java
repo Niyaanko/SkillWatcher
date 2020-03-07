@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.UserBean;
 import dao.UserDAO;
 import model.InputCheck;
+import model.SessionManager;
 
 /**
  * Servlet implementation class LoginServlet
@@ -66,8 +67,6 @@ public class CreateAccountServlet extends HttpServlet {
 			//登録済のメールアドレスなので、エラーメッセージをセット
 			errorMsg = "既に登録されているメールアドレスです。";
 		}
-
-		RequestDispatcher reqDispatcher = null;
 		//エラーメッセージがない場合は登録完了 セッションをセットし、会員ページへ
 		//エラーメッセージがある場合は新規登録ページへ
 		if(errorMsg == null) {
@@ -78,16 +77,18 @@ public class CreateAccountServlet extends HttpServlet {
 			usBean.setPassword(createPassword);
 			usBean.setAuthority(1);
 			usDAO.addUser(usBean);
-			//セッション情報登録
 
-			reqDispatcher = request.getRequestDispatcher("MemberServlet");
+			//登録後のユーザー情報取得
+			usBean = usDAO.getUserByMailAddress(createMailAddress);
+			//セッション情報登録
+			SessionManager.addSession(request, response, usBean);
+			response.sendRedirect("/SkillWatcher/MemberServlet");
 		}else {
+			RequestDispatcher reqDispatcher = null;
 			request.setAttribute("ErrorMsg",errorMsg);
 			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/.jsp");
+			reqDispatcher.forward(request, response);
 		}
-		reqDispatcher.forward(request, response);
-		return;
-
 	}
 
 }
