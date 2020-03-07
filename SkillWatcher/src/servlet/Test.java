@@ -1,10 +1,13 @@
 package servlet;
-import dao.UserDAO;
+
+import model.InputCheck;
+
 public class Test {
 
 	public static void main(String[] args) {
 		// TODO 自動生成されたメソッド・スタブ
-		UserDAO ud = new UserDAO();
+		String mail = "aa@@gmail.com";
+		System.out.println(InputCheck.isMailAddress(mail));
 
 	}
 

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDAO;
+import model.InputCheck;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -45,7 +48,25 @@ public class CreateAccountServlet extends HttpServlet {
 		String createMailAddress = request.getParameter("create_mail_address");
 		String createPassword = request.getParameter("create_password");
 
+		String errorMsg = null;
 		//入力値チェック
+		if(!InputCheck.isInput(createMailAddress) || !InputCheck.isInput(createPassword)) {
+			//入力されていない項目があるので、エラーメッセージをセット
+			errorMsg = "入力されていない項目があります";
+		}
+		//メールアドレスチェック
+		if(errorMsg == null && !InputCheck.isMailAddress(createMailAddress)) {
+			//不正なメールアドレスなので、エラーメッセージをセットし会員登録ページへ
+			errorMsg = "不正なメールアドレスです。";
+		}
+		UserDAO usDAO = new UserDAO();
+		//メールアドレスが登録済でないかのチェック
+		if(errorMsg == null && usDAO.getUserByMailAddress(createMailAddress) != null) {
+			//登録済のメールアドレスなので、エラーメッセージをセットし会員登録ページへ
+			errorMsg = "既に登録されているメールアドレスです。";
+		}
+
+
 
 
 	}
