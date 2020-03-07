@@ -1,6 +1,8 @@
 package bean;
 
-public class SkillBean {
+import java.io.Serializable;
+
+public class SkillBean implements Serializable{
 
 	private int id;
 	private String name;

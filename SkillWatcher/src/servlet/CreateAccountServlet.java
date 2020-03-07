@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.UserBean;
 import dao.UserDAO;
 import model.InputCheck;
 
@@ -31,7 +32,6 @@ public class CreateAccountServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 		//会員登録ページへ
 		RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/CreateAccountPage.jsp");
@@ -44,6 +44,7 @@ public class CreateAccountServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF8");
 		//入力値の取得
 		String createMailAddress = request.getParameter("create_mail_address");
 		String createPassword = request.getParameter("create_password");
@@ -56,18 +57,36 @@ public class CreateAccountServlet extends HttpServlet {
 		}
 		//メールアドレスチェック
 		if(errorMsg == null && !InputCheck.isMailAddress(createMailAddress)) {
-			//不正なメールアドレスなので、エラーメッセージをセットし会員登録ページへ
+			//不正なメールアドレスなので、エラーメッセージをセット
 			errorMsg = "不正なメールアドレスです。";
 		}
 		UserDAO usDAO = new UserDAO();
 		//メールアドレスが登録済でないかのチェック
 		if(errorMsg == null && usDAO.getUserByMailAddress(createMailAddress) != null) {
-			//登録済のメールアドレスなので、エラーメッセージをセットし会員登録ページへ
+			//登録済のメールアドレスなので、エラーメッセージをセット
 			errorMsg = "既に登録されているメールアドレスです。";
 		}
 
+		RequestDispatcher reqDispatcher = null;
+		//エラーメッセージがない場合は登録完了 セッションをセットし、会員ページへ
+		//エラーメッセージがある場合は新規登録ページへ
+		if(errorMsg == null) {
+			//ユーザー新規登録
+			UserBean usBean = new UserBean();
+			usBean.setMailAddress(createMailAddress);
+			usBean.setName(createMailAddress);
+			usBean.setPassword(createPassword);
+			usBean.setAuthority(1);
+			usDAO.addUser(usBean);
+			//セッション情報登録
 
-
+			reqDispatcher = request.getRequestDispatcher("MemberServlet");
+		}else {
+			request.setAttribute("ErrorMsg",errorMsg);
+			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/.jsp");
+		}
+		reqDispatcher.forward(request, response);
+		return;
 
 	}
 

@@ -17,15 +17,14 @@ public class UserDAO extends DBConnectUtil{
 
 		try {
 			//User情報INSERT SQL
-			String sql = "INSERT INTO " + TABLE + " user_id, mail_address, password, authority, user_name "
+			String sql = "INSERT INTO " + TABLE + "  mail_address, password, authority, user_name "
 						+ "VALUES(?,?,?,?,?)";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setInt(1,ub.getId());
-			pStmt.setString(2,ub.getMailAddress());
-			pStmt.setString(3,ub.getPassword());
-			pStmt.setInt(4,ub.getAuthority());
-			pStmt.setString(5,ub.getName());
+			pStmt.setString(1,ub.getMailAddress());
+			pStmt.setString(2,ub.getPassword());
+			pStmt.setInt(3,ub.getAuthority());
+			pStmt.setString(4,ub.getName());
 			return pStmt.execute();
 
 		}catch(Exception e) {
