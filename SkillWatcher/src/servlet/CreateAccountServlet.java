@@ -88,10 +88,10 @@ public class CreateAccountServlet extends HttpServlet {
 			usBean = usDAO.getUserByMailAddress(createMailAddress);
 			//セッション情報登録
 			SessionManager.addSession(request, response, usBean);
-			reqDispatcher = request.getRequestDispatcher("/SkillWatcher/MemberServlet");
+			reqDispatcher = request.getRequestDispatcher("/MemberServlet");
 		}else {
 			request.setAttribute("ErrorMsg",errorMsg);
-			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/.jsp");
+			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/CreateAccountPage.jsp");
 		}
 		reqDispatcher.forward(request, response);
 

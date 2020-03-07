@@ -32,8 +32,51 @@ public class UserDAO extends DBConnectUtil{
 			return false;
 		}
 	}
-	/**User取得メソッド（列指定）
-	 * @param not {@code null} String column,String val
+	/**User取得メソッド（複数列指定）
+	 * 指定する列のインデックス番号と値のインデックス番号を同期すること。
+	 * @param not {@code null} String[] columns,String[] values
+	 * @return UserBean User情報 取得できなかった場合 null
+	 */
+	public UserBean getUser(String[] columns, String[] values) {
+		try {
+			//User情報INSERT SQL
+			String sql = "SELECT user_id, mail_address, password, authority, user_name FROM " + TABLE + " WHERE";
+			if(columns.length != values.length) {
+				return null;
+			}else {
+				for(int i = 0;i < columns.length;i++) {
+					//最後のみANDを文に入れない
+					if(i != columns.length - 1) {
+						sql += " " + columns[i] + " = ? AND";
+					}else {
+						sql += " " + columns[i] + " = ?";
+					}
+				}
+			}
+			//値をセット
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			for(int i = 0;i < values.length;i++) {
+				pStmt.setString(i + 1,values[i]);
+			}
+			ResultSet rs = pStmt.executeQuery();
+			UserBean ub = null;
+			while(rs.next()) {
+				ub = new UserBean();
+				ub.setId(Integer.parseInt(rs.getString("user_id")));
+				ub.setMailAddress(rs.getString("mail_address"));
+				ub.setPassword(rs.getString("password"));
+				ub.setAuthority(Integer.parseInt(rs.getString("authority")));
+				ub.setName(rs.getString("user_name"));
+			}
+			return ub;
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	/**User取得メソッド（単独列指定）
+	 * @param not {@code null} String[] columns,String[] values
 	 * @return UserBean User情報 取得できなかった場合 null
 	 */
 	public UserBean getUser(String column, String val) {
@@ -103,5 +146,15 @@ public class UserDAO extends DBConnectUtil{
 			e.printStackTrace();
 			return false;
 		}
+	}
+	/**User取得メソッド（メールアドレス、パスワードから）
+	 * このメソッドを実行してnullで無ければログイン完了
+	 * @param not {@code null}
+	 * @return UserBean User情報 取得できなかった場合 null
+	 */
+	public UserBean getUserByMailAddressPassword(String userName, String password) {
+		String[] columns = {"mail_address","password"};
+		String[] values = {userName,password};
+			return getUser(columns, values);
 	}
 }
