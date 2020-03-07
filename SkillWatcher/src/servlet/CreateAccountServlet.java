@@ -40,8 +40,14 @@ public class CreateAccountServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("doaaa");
+
+		//入力値の取得
+		String createMailAddress = request.getParameter("create_mail_address");
+		String createPassword = request.getParameter("create_password");
+
+		//入力値チェック
+
+
 	}
 
 }

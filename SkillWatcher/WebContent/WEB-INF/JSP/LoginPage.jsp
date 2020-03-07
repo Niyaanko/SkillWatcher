@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Login</h1>
-<form action="LoginServlet" method="POST">
+<form action="/SkillWatcher/LoginServlet" method="POST">
 	Mail Address<input type="text" name="mail_address"><br>
 	Password<input type="password" name="password"><br>
 	<input type="submit" value="Login">

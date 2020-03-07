@@ -8,11 +8,10 @@
 </head>
 <body>
 <h1>Create Account</h1>
-<form action="LoginServlet" method="POST">
-	Mail Address<input type="text" name="maill_address"><br>
-	Password<input type="password" name="password"><br>
-	Password<input type="password" name="password"><br>
-	<input type="submit" value="Login">
+<form action="/SkillWatcher/CreateAccountServlet" method="POST">
+	Mail Address<input type="text" name="create_maill_address"><br>
+	Password<input type="password" name="create_password"><img src="IMG/eye.png"><br>
+	<input type="submit" value="Regist">
 </form>
 </body>
 </html>
