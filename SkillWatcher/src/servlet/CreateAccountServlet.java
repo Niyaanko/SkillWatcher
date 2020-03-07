@@ -33,9 +33,14 @@ public class CreateAccountServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//会員登録ページへ
-		RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/CreateAccountPage.jsp");
+		RequestDispatcher reqDispatcher = null;
+		//セッション情報がセットされていれば、そのまま会員ページへ
+		//セッション情報がセットされていない場合、会員登録ページへ
+		if(SessionManager.isSession(request)) {
+			reqDispatcher = request.getRequestDispatcher("/SkillWatcher/MemberServlet");
+		}else {
+			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/CreateAccountPage.jsp");
+		}
 		reqDispatcher.forward(request, response);
 		return;
 	}
@@ -69,6 +74,7 @@ public class CreateAccountServlet extends HttpServlet {
 		}
 		//エラーメッセージがない場合は登録完了 セッションをセットし、会員ページへ
 		//エラーメッセージがある場合は新規登録ページへ
+		RequestDispatcher reqDispatcher = null;
 		if(errorMsg == null) {
 			//ユーザー新規登録
 			UserBean usBean = new UserBean();
@@ -82,13 +88,14 @@ public class CreateAccountServlet extends HttpServlet {
 			usBean = usDAO.getUserByMailAddress(createMailAddress);
 			//セッション情報登録
 			SessionManager.addSession(request, response, usBean);
-			response.sendRedirect("/SkillWatcher/MemberServlet");
+			reqDispatcher = request.getRequestDispatcher("/SkillWatcher/MemberServlet");
 		}else {
-			RequestDispatcher reqDispatcher = null;
 			request.setAttribute("ErrorMsg",errorMsg);
 			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/.jsp");
-			reqDispatcher.forward(request, response);
 		}
+		reqDispatcher.forward(request, response);
+
+		return;
 	}
 
 }

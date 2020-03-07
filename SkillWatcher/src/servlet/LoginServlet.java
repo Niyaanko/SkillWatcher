@@ -35,11 +35,12 @@ public class LoginServlet extends HttpServlet {
 		//セッション情報がセットされていれば、そのまま会員ページへ
 		//セッション情報がセットされていない場合、ログインページへ
 		if(SessionManager.isSession(request)) {
-			response.sendRedirect("/SkillWatcher/MemberServlet");
+			reqDispatcher = request.getRequestDispatcher("/SkillWatcher/MemberServlet");
 		}else {
 			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/LoginPage.jsp");
-			reqDispatcher.forward(request, response);
 		}
+		reqDispatcher.forward(request, response);
+		return;
 	}
 
 	/**
@@ -47,7 +48,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("doaaa");
+		return;
 	}
+
 
 }
