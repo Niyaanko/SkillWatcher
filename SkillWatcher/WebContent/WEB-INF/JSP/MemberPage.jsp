@@ -8,6 +8,6 @@
 </head>
 <body>
 <h1>Skill Watcher</h1>
-いえーい
+<a href="/SkillWatcher/LogoutServlet">Logout</a>
 </body>
 </html>

@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 		//セッション情報がセットされていれば、そのまま会員ページへ
 		//セッション情報がセットされていない場合、ログインページへ
 		if(SessionManager.isSession(request)) {
-			reqDispatcher = request.getRequestDispatcher("/SkillWatcher/MemberServlet");
+			reqDispatcher = request.getRequestDispatcher("/MemberServlet");
 		}else {
 			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/LoginPage.jsp");
 		}
