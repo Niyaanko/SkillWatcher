@@ -22,7 +22,20 @@ public class SessionManager {
 		//セッション・クッキーの登録
 		HttpSession session = request.getSession(true);
 		session.setAttribute("user", usBean);
-		Cookie cookie = new Cookie("id", Integer.toString(usBean.getId()));
+		Cookie[] cookies = request.getCookies();
+		Cookie cookie = null;
+		if(cookies != null) {
+			for(Cookie c : cookies){
+				if(c.getName().equals("id")) {
+					cookie = c;
+					cookie.setValue(Integer.toString(usBean.getId()));
+				}
+			}
+		}
+		//Cookieに「id」があれば取得
+		if(cookie == null) {
+			cookie = new Cookie("id",Integer.toString(usBean.getId()));
+		}
 		response.addCookie(cookie);
 		return true;
 	}
@@ -39,24 +52,29 @@ public class SessionManager {
 		if(session == null) {
 			return false;
 		}
+		//セッションのユーザーがない場合false
+		if(session.getAttribute("user") == null) {
+			return false;
+		}
 		//クッキーの取得
 		Cookie[] cookies = request.getCookies();
-		String cookieId = null;
+		Cookie cookie = null;
+		if(cookies == null) {
+			return false;
+		}
+		//Cookieに「id」があれば取得
 		for(Cookie c : cookies){
 			if(c.getName().equals("id")) {
-				cookieId = c.getValue();
+				cookie = c;
 			}
 		}
 		//クッキーのidが取得できなければfalse
-		if(cookieId == null) {
+		if(cookie == null) {
 			return false;
 		}
 		UserBean usBean = (UserBean)session.getAttribute("user");
-		if(usBean == null) {
-			return false;
-		}
 		//セッションのUserBean id とクッキーのidが照合できるか
-		if(!cookieId.equals(Integer.toString(usBean.getId()))) {
+		if(!cookie.getValue().equals(Integer.toString(usBean.getId()))) {
 			return false;
 		}
 		return true;

@@ -17,8 +17,8 @@ public class UserDAO extends DBConnectUtil{
 
 		try {
 			//User情報INSERT SQL
-			String sql = "INSERT INTO " + TABLE + "  mail_address, password, authority, user_name "
-						+ "VALUES(?,?,?,?,?)";
+			String sql = "INSERT INTO " + TABLE + " (mail_address, password, authority, user_name) "
+						+ "VALUES (?,?,?,?)";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1,ub.getMailAddress());

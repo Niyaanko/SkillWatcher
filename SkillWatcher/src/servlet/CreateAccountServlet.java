@@ -37,9 +37,11 @@ public class CreateAccountServlet extends HttpServlet {
 		//セッション情報がセットされていれば、そのまま会員ページへ
 		//セッション情報がセットされていない場合、会員登録ページへ
 		if(SessionManager.isSession(request)) {
-			reqDispatcher = request.getRequestDispatcher("/SkillWatcher/MemberServlet");
+			reqDispatcher = request.getRequestDispatcher("/MemberServlet");
+			System.out.println("jajaja");
 		}else {
 			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/CreateAccountPage.jsp");
+			System.out.println("ajajaj");
 		}
 		reqDispatcher.forward(request, response);
 		return;
@@ -86,6 +88,11 @@ public class CreateAccountServlet extends HttpServlet {
 
 				//登録後のユーザー情報取得
 				usBean = usDAO.getUserByMailAddress(createMailAddress);
+				System.out.println( usBean.getId());
+				System.out.println( usBean.getMailAddress());
+				System.out.println( usBean.getPassword());
+				System.out.println( usBean.getAuthority());
+				System.out.println( usBean.getName());
 				//セッション情報登録
 				SessionManager.addSession(request, response, usBean);
 				reqDispatcher = request.getRequestDispatcher("/MemberServlet");

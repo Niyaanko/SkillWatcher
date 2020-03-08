@@ -75,6 +75,7 @@ public class LoginServlet extends HttpServlet {
 		//ログイン情報があっているか判定
 		UserDAO usDAO = new UserDAO();
 		UserBean usBean = usDAO.getUserByMailAddressPassword(mailAddress, password);
+
 		//あっていればセッションを発行し会員ページへ
 		//あっていなければエラーメッセージをセットしログインページへ
 		if(usBean != null) {
