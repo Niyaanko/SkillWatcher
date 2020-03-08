@@ -70,7 +70,8 @@ public class LoginServlet extends HttpServlet {
 		if(errorMsg != null) {
 			request.setAttribute("ErrorMsg",errorMsg);
 			reqDispatcher = request.getRequestDispatcher("/WEB-INF/JSP/LoginPage.jsp");
-			return ;
+			reqDispatcher.forward(request, response);
+			return;
 		}
 		//ログイン情報があっているか判定
 		UserDAO usDAO = new UserDAO();

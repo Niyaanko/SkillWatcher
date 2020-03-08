@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String errorMsg = (String)request.getAttribute("ErrorMsg");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,5 +14,8 @@
 	Password<input type="password" name="create_password"><img src="IMG/eye.png"><br>
 	<input type="submit" value="Regist">
 </form>
+<% if(errorMsg != null){%>
+<h2><%= errorMsg %></h2>
+<% } %>
 </body>
 </html>
