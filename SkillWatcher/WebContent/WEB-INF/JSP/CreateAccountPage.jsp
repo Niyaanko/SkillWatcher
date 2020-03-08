@@ -17,5 +17,6 @@
 <% if(errorMsg != null){%>
 <h2><%= errorMsg %></h2>
 <% } %>
+<a href="/SkillWatcher/LoginServlet">Login</a>
 </body>
 </html>
