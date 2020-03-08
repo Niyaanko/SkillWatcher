@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="CSS/Frame.css">
 <title>Skill Watcher</title>
 </head>
 <body>
