@@ -6,9 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="CSS/Frame.css">
+<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
 <title>Login</title>
 </head>
 <body>
+<div class="div-header">
+	<h1>Skill Watcher</h1>
+</div>
 <h1>Login</h1>
 <form action="/SkillWatcher/LoginServlet" method="POST">
 	Mail Address<input type="text" name="mail_address"><br>
@@ -19,5 +23,8 @@
 <h2><%= errorMsg %></h2>
 <% } %>
 <a href="/SkillWatcher/CreateAccountServlet">Create Account</a>
+<div class="div-footer">
+<small>&copy;Hiromu Watanabe </small>
+</div>
 </body>
 </html>

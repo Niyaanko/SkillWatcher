@@ -1,1 +1,16 @@
 @charset "UTF-8";
+body{
+	margin:0;
+}
+.div-header{
+	top:0;
+	height:100px;
+	width:100%;
+	color:black;
+	font-family: 'Oswald', sans-serif;
+	font-size:1px;
+}
+.div-header h1{
+	margin: 0 auto;
+	text-align:center;
+}
