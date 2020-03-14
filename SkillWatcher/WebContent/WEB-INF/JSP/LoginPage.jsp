@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="CSS/LoginPage.css">
-<title>Login</title>
+<title>Skill Watcher Login</title>
 </head>
 <body>
 <div class="div-header">
+	<img class="logo-img" src="IMG/skill_watcher_logo.png">
 	<h1>Skill Watcher</h1>
 </div>
 <h1>Login</h1>
