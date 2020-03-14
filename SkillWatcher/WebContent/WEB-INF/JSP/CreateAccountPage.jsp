@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="CSS/Frame.css">
+<link rel="stylesheet" type="text/css" href="">
 <title>Create Account</title>
 </head>
 <body>

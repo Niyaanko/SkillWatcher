@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="CSS/Frame.css">
-<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="CSS/LoginPage.css">
 <title>Login</title>
 </head>
 <body>
