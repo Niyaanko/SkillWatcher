@@ -18,7 +18,7 @@
 <div class="div-main">
 	<h1>Want to visalize your skills ?</h1>
 	<h2>あなたのスキルを可視化してみませんか ?</h2>
-	<div class="line"></div>
+	<div class="div-line"></div>
 	<h1>Login</h1>
 	<form action="/SkillWatcher/LoginServlet" method="POST">
 		<p>Mail Address<input type="text" name="mail_address"></p>

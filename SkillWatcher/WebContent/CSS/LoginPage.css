@@ -1,49 +1,59 @@
 @charset "UTF-8";
 body{
-	margin:0;
+	margin: 0;
 	font-family: 'Rajdhani', sans-serif;
-	color:#707070;
+	color: #707070;
 }
 
 /* ↓↓↓↓div-header class (ヘッダー) ↓↓↓↓*/
 .div-header{
-	height:200px;
-	font-size:30px;
-	display:flex;
+	height: 200px;
+	font-size: 30px;
+	display: flex;
 	flex-diretion: row;
 	align-items: flex-end;
 }
 .div-header h1{
-	margin:0 0 6px 15px;
-	font-weight:normal;
+	margin: 0 0 6px 15px;
+	font-weight: normal;
 
 }
 .div-header img{
-	margin-left:200px;
-	width:100px;
-	height:100px;
-	float:left;
+	margin-left: 200px;
+	width: 100px;
+	height: 100px;
+	float: left;
 }
 /* ↑↑↑↑div-header class (ヘッダー) ↑↑↑↑*/
 
 /* ↓↓↓↓div-main class (メイン) ↓↓↓↓*/
 .div-main{
-	width:600px;
-	display:flex;
+	width: 600px;
+	margin: 0 auto;
+	display: flex;
 	flex-direction: column;
-	height:700px;
+	height: 700px;
 }
-.div-main .line{
-	border-width: 1px 0px 0px 0px; /* 太さ */
-	border-style: solid; /* 線種 */
-	border-color: #707070;   /* 線色 */
-	height: 1px;         /* 高さ(※古いIE用) */
+.div-main h1,h2{
+	font-weight: normal;
+}
+.div-main h1{
+	font-size: 50px;
+}
+.div-main h2{
+	font-size: 16px;
+}
+.div-main .div-line{
+	border-width: 1px 0px 0px 0px; 		/* 太さ */
+	border-style: solid; 				/* 線種 */
+	border-color: #707070;   			/* 線色 */
+	height: 1px;         				/* 高さ(※古いIE用) */
 }
 /* ↑↑↑↑div-main class (メイン) ↑↑↑↑*/
 
 /* ↓↓↓↓div-footer class (フッター) ↓↓↓↓*/
 .div-footer{
-	display:flex;
-	height:35px;
+	display: flex;
+	height: 35px;
 }
 /* ↑↑↑↑div-footer class (フッター) ↑↑↑↑*/
