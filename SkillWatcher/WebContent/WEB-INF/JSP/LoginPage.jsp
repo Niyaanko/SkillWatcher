@@ -16,19 +16,19 @@
 </div>
 
 <div class="div-main">
-	<h1>Want to visalize your skills ?</h1>
+	<h1 class="catch-copy">Want to visalize your skills ?</h1>
 	<h2>あなたのスキルを可視化してみませんか ?</h2>
 	<div class="div-line"></div>
-	<h1>Login</h1>
+	<h1 class="login">Login</h1>
 	<form action="/SkillWatcher/LoginServlet" method="POST">
-		<p>Mail Address<input type="text" name="mail_address"></p>
-		<p> Password<input type="password" name="password"></p>
-		<input type="submit" value="Login">
+		<p class="mail">Mail Address<input class="textbox" type="text" name="mail_address"></p>
+		<p class="pass"> Password<input class="passbox" type="password" name="password"></p>
+		<input class="login-button" type="submit" value="Login">
 	</form>
 	<% if(errorMsg != null){%>
 	<p><%= errorMsg %></p>
 	<% } %>
-	<a href="/SkillWatcher/CreateAccountServlet">Create Account</a>
+	<a class="create-link" href="/SkillWatcher/CreateAccountServlet">Create Account</a>
 </div>
 
 <div class="div-footer">
